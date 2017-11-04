@@ -34,13 +34,19 @@ module UltimatePoints
         end
       end
 
+      time = Time.now.strftime('%Y-%m-%dT%H:%M:%SZ')
+      three_id = @con.exec("SELECT id FROM groups WHERE name='trust_level_3'")[0]['id']
+      two_id = @con.exec("SELECT id FROM groups WHERE name='trust_level_2'")[0]['id']
+
       level_three.each do |l3|
         @con.exec "UPDATE users SET trust_level='3' WHERE id='#{l3[0]}'"
-        @con.exec "UPDATE groups SET user_count=user_count + 1 WHERE name='trust_level_3'"
+        @con.exec "INSERT INTO group_users (group_id, user_id, created_at, updated_at, owner, notification_level) VALUES('#{three_id}', '#{l3[0]}', '#{time}', '#{time}', 'f', '3')"
+	@con.exec "UPDATE groups SET user_count=user_count + 1 WHERE name='trust_level_3'"
       end
 
       level_two.each do |l2|
         @con.exec "UPDATE users SET trust_level='2' WHERE id='#{l2[0]}'"
+	@con.exec "INSERT INTO group_users (group_id, user_id, created_at, updated_at, owner, notification_level) VALUES('#{two_id}', '#{l2[0]}', '#{time}', '#{time}', 'f', '3')"
         @con.exec "UPDATE groups SET user_count=user_count + 1 WHERE name='trust_level_2'"
       end
     end
