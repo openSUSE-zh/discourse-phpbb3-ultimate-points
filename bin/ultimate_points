@@ -9,8 +9,8 @@ config = ARGV[0] || "config"
 mysql = UltimatePoints::DB.new(config).mysql2
 pg = UltimatePoints::DB.new(config).pg
 
-points = UltimatePoints::PHPBB.new(mysql).get
+p points = UltimatePoints::PHPBB.new(mysql).get
 
-mapped = UltimatePoints::Map.new(pg, points).get
+#mapped = UltimatePoints::Map.new(pg, points).get
 
-UltimatePoints::Discourse.new(pg, mapped).push
+#UltimatePoints::Discourse.new(pg, mapped).push
