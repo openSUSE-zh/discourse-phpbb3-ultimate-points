@@ -62,7 +62,7 @@ module UltimatePoints
       end
     end
 
-    def sort(arr, pos)
+    def self.sort(arr, pos)
       # pos: 1, posts; 2, points
       flag = true
       while flag do
