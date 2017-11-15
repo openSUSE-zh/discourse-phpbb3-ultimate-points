@@ -9,11 +9,11 @@ module UltimatePoints
     end
 
     def respond_to_missing?(dbtype)
-      %i[mysql2 pg].include?(dbtype) || super
+      %i(mysql2 pg).include?(dbtype) || super
     end
 
     def method_missing(dbtype)
-      super unless %i[mysql2 pg].include?(dbtype)
+      super unless %i(mysql2 pg).include?(dbtype)
       para = @config[dbtype.to_s]
       if dbtype == :mysql2
         "#{dbtype.to_s.capitalize}::Client".split('::')

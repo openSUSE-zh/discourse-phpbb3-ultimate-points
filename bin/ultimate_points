@@ -4,7 +4,7 @@ $LOAD_PATH.push(File.expand_path(File.dirname(__FILE__) + '/../lib'))
 
 require 'ultimate_points'
 
-config = ARGV[0] || "config"
+config = ARGV[0] || 'config'
 
 mysql = UltimatePoints::DB.new(config).mysql2
 pg = UltimatePoints::DB.new(config).pg

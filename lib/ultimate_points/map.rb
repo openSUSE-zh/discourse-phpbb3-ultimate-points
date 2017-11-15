@@ -23,7 +23,7 @@ module UltimatePoints
     def get_user_id(id)
       ids = @con.exec "SELECT user_id FROM user_custom_fields WHERE name='import_id' AND value=\'#{id}\'"
       data = []
-      return "-1" if ids.cmd_tuples.zero?
+      return '-1' if ids.cmd_tuples.zero?
       ids.each do |row|
         data << row['user_id']
       end
